@@ -10,7 +10,7 @@
   }
 
   function initCounterWidget() {
-    var container = document.querySelector('.counter-widget');
+var container = document.querySelector('.counter-widget-popup');
     if (container) {
       container.innerHTML = '<span>Personne en ligne: </span><span class="random-number">100</span>';
       setInterval(function() {
