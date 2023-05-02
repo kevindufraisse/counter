@@ -1,27 +1,26 @@
-function getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function updateNumber() {
-    const randomNumberElement = document.getElementById("randomNumber");
-    const currentNumber = parseInt(randomNumberElement.textContent);
-    let newNumber = getRandomInt(currentNumber - 50, currentNumber + 50);
-
-    // Vérifier les limites
-    if (newNumber < 130) {
-        newNumber = 130;
-    } else if (newNumber > 333) {
-        newNumber = 333;
+(function() {
+  function updateCounter() {
+    var min = 130;
+    var max = 333;
+    var randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    var counterElement = document.querySelector('.counter-widget .random-number');
+    if (counterElement) {
+      counterElement.textContent = randomNumber;
     }
+  }
 
-    randomNumberElement.textContent = newNumber;
+  function initCounterWidget() {
+    var container = document.querySelector('.counter-widget');
+    if (container) {
+      container.innerHTML = '<span>Personne en ligne: </span><span class="random-number">100</span>';
+      setInterval(function() {
+        var minInterval = 20;
+        var maxInterval = 40;
+        var randomInterval = Math.floor(Math.random() * (maxInterval - minInterval + 1)) + minInterval;
+        updateCounter();
+      }, randomInterval * 1000);
+    }
+  }
 
-    // Planifier le prochain appel avec un intervalle aléatoire
-    const nextInterval = getRandomInt(20000, 40000);
-    setTimeout(updateNumber, nextInterval);
-}
-
-// Appeler la première fois la fonction updateNumber
-updateNumber();
+  document.addEventListener('DOMContentLoaded', initCounterWidget);
+})();
